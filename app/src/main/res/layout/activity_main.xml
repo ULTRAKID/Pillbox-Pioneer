@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/pillbox_pioneer"
+    android:orientation="vertical"
+    tools:context="com.cwt.pillboxpioneer.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimaryDark"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:textColor="#fff" />
+
+    </RelativeLayout>
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:iconifiedByDefault="false"
+        android:queryHint="输入药品名称"
+        android:padding="2dp"
+        android:id="@+id/search_view"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/clock"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="25dp"
+        app:backgroundTint="#87c5ff"
+        app:rippleColor="#33728dff"
+        app:elevation="10dp"
+        app:pressedTranslationZ="12dp"
+        app:borderWidth="0dp"
+        app:fabSize="auto"
+        android:id="@+id/clock_fab"/>
+
+</FrameLayout>

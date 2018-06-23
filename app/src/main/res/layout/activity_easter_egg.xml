@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cwt.pillboxpioneer.easteregg.EasterEggActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/easter_egg_bg_no_key"
+        android:scaleType="fitXY"
+        android:id="@+id/easter_bg_img"/>
+
+
+    <com.cwt.pillboxpioneer.autoscroll.AutoScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/sub_scroll">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/subtitle"
+            android:textSize="27sp"
+            android:gravity="center"
+            android:id="@+id/sub_text"/>
+    </com.cwt.pillboxpioneer.autoscroll.AutoScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:hint="KEY"
+            android:padding="8dp"
+            android:background="@drawable/edittext_bg_selector"
+            android:id="@+id/easter_input_edit"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonstyle"
+            android:text="ENTER"
+            android:id="@+id/easter_enter_button"/>
+
+    </LinearLayout>
+
+</FrameLayout>

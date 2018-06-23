@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Pillbox Pioneer</string>
+    <string name="test_med_name">十滴水</string>
+    <string name="test_med_brief">健胃，驱风。用于因中暑引起的头晕，恶心，腹痛，胃肠不适。</string>
+    <string name="title_activity_login">登陆</string>
+    <string name="device_id">R13DRCJYXHUK5H1A</string>
+    <string name="subtitle">\n\n\n\n\n\n\n    \n恭喜你，获得了绿洲的控制权！\n    \n    \n(误\n    \n    虽然这个app并没有多少功能，不过由于制作周期要比上一个短很多，所以并没有什么进步。而且这段时间还挺忙的，没有什么时间去钻研新的功能...\n    \n    下一个项目应该就是一个电影票比价的app了（是自己真的想做很久了的），不过下学期就要考研了，也不知道什么时候能做完，希望毕业之前吧（笑。\n    \n非常感谢你的支持。\n软件制作人员：曹吵吵\n硬件制作人员：易柯敏、赵诣、富钲壹\n   \nTHE END？\n\n\n</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password </string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="magic_str">"    \n\n\n\n17，我喜欢你。"</string>
+</resources>
