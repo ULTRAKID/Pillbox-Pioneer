@@ -1,6 +1,7 @@
 package com.cwt.pillboxpioneer.personinfo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.cwt.pillboxpioneer.ClockService;
 import com.cwt.pillboxpioneer.MainActivity;
 import com.cwt.pillboxpioneer.R;
 import com.cwt.pillboxpioneer.clock.ClockActivity;
@@ -66,7 +68,11 @@ public class LoginActivity extends AppCompatActivity {
                         editor.commit();
                     }
                     MainActivity.loginFlag=true;
-                    IOTclientFactory.startReceiving(userAccount);
+                    //IOTclientFactory.startReceiving(userAccount);
+                    IOTclientFactory.setAccount(userAccount);
+                    Intent serviceIntent=new Intent(LoginActivity.this,ClockService.class);
+                    stopService(serviceIntent);
+                    startService(serviceIntent);
                     ClockActivity.loginQuitButton.setText("注销");
                     Toast.makeText(LoginActivity.this,"登陆成功",Toast.LENGTH_SHORT);
                     finish();

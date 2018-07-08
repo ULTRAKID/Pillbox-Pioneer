@@ -29,14 +29,19 @@
         <activity android:name=".search.MedicineManualActivity" />
         <activity
             android:name=".clock.ClockActivity"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance" />
         <activity
             android:name=".easteregg.EasterEggActivity"
             android:theme="@style/EasterTheme" />
         <activity
             android:name=".personinfo.LoginActivity"
             android:label="登陆"
-            android:theme="@style/login_dialog"/>
+            android:theme="@style/login_dialog" />
+
+        <service
+            android:name=".ClockService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

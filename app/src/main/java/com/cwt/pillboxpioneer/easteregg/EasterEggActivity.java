@@ -1,12 +1,14 @@
 package com.cwt.pillboxpioneer.easteregg;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 import com.cwt.pillboxpioneer.R;
 import com.cwt.pillboxpioneer.autoscroll.AutoScrollView;
+import com.cwt.pillboxpioneer.personinfo.Account;
 
 public class EasterEggActivity extends AppCompatActivity {
     ImageView background;
@@ -26,7 +29,8 @@ public class EasterEggActivity extends AppCompatActivity {
     AutoScrollView scrollView;
     TextView subText;
     Handler bonusHandler;
-    private static final String magicStr="0517200209081008";
+    private static final String MAGIC_STR ="0517200209081008";
+    private static final String SETTING_STR="SET ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class EasterEggActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String input=editText.getText().toString();
-                if (input.equals(magicStr)){
+                if (input.equals(MAGIC_STR)){
                     Toast.makeText(EasterEggActivity.this,"Bonus!",Toast.LENGTH_SHORT).show();
                     background.setImageResource(R.drawable.easter_egg_bg_key);
                     editText.setVisibility(View.GONE);
@@ -64,6 +68,11 @@ public class EasterEggActivity extends AppCompatActivity {
                     scrollView.setPeriod(5000);
                     scrollView.setExtraFun(bonusHandler);
                     scrollView.setScrolled(true);
+                } else if(isSettingCmd(input)){
+                    String word=input.substring(SETTING_STR.length());
+                    boolean flag=setWarningWord(word);
+                    Toast.makeText(EasterEggActivity.this,"设置成功,重启后生效。",Toast.LENGTH_SHORT).show();
+                    Log.e("EasterEggSettingWarning","setting:"+flag);
                 } else {
                     Toast.makeText(EasterEggActivity.this,"Wrong! But I will give u an extra life.",Toast.LENGTH_SHORT).show();
                 }
@@ -89,5 +98,19 @@ public class EasterEggActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public static boolean isSettingCmd(String cmd){
+        if (cmd.length()<=SETTING_STR.length())
+            return false;
+        String firstStr=cmd.substring(0,SETTING_STR.length());
+        return firstStr.equals(SETTING_STR);
+    }
+
+    private boolean setWarningWord(String word){
+        SharedPreferences sharedPreferences=getSharedPreferences(Account.SP_FILE_NAME,0);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString(Account.SP_WARNING_NAME,word);
+        return editor.commit();
     }
 }

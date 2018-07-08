@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.cwt.pillboxpioneer.ClockService;
 import com.cwt.pillboxpioneer.MainActivity;
 import com.cwt.pillboxpioneer.R;
 import com.cwt.pillboxpioneer.network.IOTclientFactory;
@@ -138,7 +139,10 @@ public class ClockActivity extends AppCompatActivity {
                     editor.commit();
                     Toast.makeText(ClockActivity.this,"成功注销",Toast.LENGTH_SHORT).show();
                     MainActivity.loginFlag=false;
-                    IOTclientFactory.stopReceiving();
+                    //IOTclientFactory.stopReceiving();
+                    IOTclientFactory.setAccount(null);
+                    Intent serviceIntent=new Intent(ClockActivity.this,ClockService.class);
+                    stopService(serviceIntent);
                     loginQuitButton.setText("登陆");
                     saveClockFAB.setVisibility(View.GONE);
                 }

@@ -9,6 +9,8 @@ public class Account {
     public final static String SP_ID_NAME="ACCOUNT_NUMBER";
     public final static String SP_PSW_NAME="ACCOUNT_PSW";
     public final static String SP_FILE_NAME="USER_ACCOUNT";
+    public final static String SP_WARNING_NAME="WARNING_NAME";
+    public final static String DEFAULT_WARNING_CMD="warning";
     public final static String NO_SAVED_ID="NO_SUCH_ID";
     public final static String NO_SAVED_PSW="NO_SAVED_PSW";
     private String id;  //账号

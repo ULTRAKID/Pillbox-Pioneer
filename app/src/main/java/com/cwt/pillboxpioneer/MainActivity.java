@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Account userAccount;
     public static boolean loginFlag=false;
     public static Context context;
+    private String warningWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +143,11 @@ public class MainActivity extends AppCompatActivity {
         initHandler();
         IOTclientFactory.setHandler(handler);
         if (loginFlag){
-            IOTclientFactory.startReceiving(userAccount);
+            //IOTclientFactory.startReceiving(userAccount);
+            IOTclientFactory.setAccount(userAccount);
+            Intent serviceIntent=new Intent(this,ClockService.class);
+            stopService(serviceIntent);
+            startService(serviceIntent);
             //udpClient.login(userAccount);
         }
     }
@@ -151,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences=getSharedPreferences(Account.SP_FILE_NAME,0);
         String id=sharedPreferences.getString(Account.SP_ID_NAME,Account.NO_SAVED_ID);
         String psw=sharedPreferences.getString(Account.SP_PSW_NAME,Account.NO_SAVED_PSW);
+        warningWord=sharedPreferences.getString(Account.SP_WARNING_NAME,Account.DEFAULT_WARNING_CMD);
         userAccount=new Account(id,psw);
         loginFlag=userAccount.isLegal();
         return loginFlag;
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Handler","receive a msg:"+msg);
                 if (msg.equals(UdpClient.LOGIN_SUCCESS_INFO)){
                     IOTclientFactory.isOnline=true;
-                } else if (msg.equals(UdpClient.NEED_REMIND_TAKING_PILLS)){
+                } else if (msg.equals(warningWord)){
                     Log.e("Handler","NEED_REMIND_TAKING_PILLS");
                     notificationManager.notify(0,notification);
                 }

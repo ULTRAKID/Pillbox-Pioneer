@@ -17,6 +17,7 @@ public class IOTclientFactory {
     private static boolean receivingFlag=true;
     private static Handler handler=null;
     public static boolean isOnline=false;
+    public static Account userAccount=null;
 
     public static UdpClient getInstance(){
         if (client==null)
@@ -24,31 +25,39 @@ public class IOTclientFactory {
         return client;
     }
 
+    public static void setAccount(Account account){
+        userAccount=account;
+    }
+
     public static void setHandler(Handler nhandler){
         handler=nhandler;
     }
 
-    public static boolean startReceiving(final Account account){
-        if (client==null)   return false;
+    public static boolean startReceiving(){
+        if (userAccount==null)  {Log.e("IOTclientFactory","account null");return false;}
+        if (client==null)   {Log.e("IOTclientFactory","client null");client=getInstance();}
         new Thread(new Runnable() {
             @Override
             public void run() {
                 receivingFlag=true;
+                Log.e("IOTclientFactory","thread start");
                 while (receivingFlag){
                     String msg= null;
                     try {
                         if (!isOnline)
-                            client.login(account);
+                            client.login(userAccount);
                         msg = client.getMsg();
                         if (msg.equals(UdpClient.NEED_LOGIN_INFO)){
                             isOnline=false;
-                            client.login(account);
+                            client.login(userAccount);
                         } else {
                             isOnline=true;
                         }
                         Message message=new Message();
                         message.obj=msg;
-                        handler.sendMessage(message);
+                        //Log.e("IOTclientFactory","receive a msg:"+msg);
+                        if (handler!=null)
+                            handler.sendMessage(message);
                     } catch (IOException e) {
                         //Log.e("IOTclientFactory","receiving thread error");
                         e.printStackTrace();
@@ -63,4 +72,5 @@ public class IOTclientFactory {
     public static void stopReceiving(){
         receivingFlag=false;
     }
+
 }

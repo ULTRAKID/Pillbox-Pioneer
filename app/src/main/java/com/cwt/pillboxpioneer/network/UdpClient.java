@@ -23,7 +23,7 @@ public class UdpClient {
     public final static String LOGIN_PACKAGE ="ep=R13DRCJYXHUK5H1A&pw=123517";
     public final static String NEED_LOGIN_INFO="[iotxx:send-reg-first]";
     public final static String LOGIN_SUCCESS_INFO="[iotxx:ok]";
-    public final static String NEED_REMIND_TAKING_PILLS="warning";
+    //public final static String NEED_REMIND_TAKING_PILLS="warning";
 
     private DatagramSocket socket;
     private DatagramPacket datagramPacket;
